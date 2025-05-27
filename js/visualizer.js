@@ -179,7 +179,7 @@ function draw_grid() {
                 }
                 // path start->end
                 if(grid.get(j, i)  == CellState.PATH) {
-                    fill(217, 255, 3, 255);
+                    fill(255, 234, 71, 255);
                 }        
                 if(grid.get(j, i)  == CellState.WALL) {
                     fill(0, 0, 0, 255);

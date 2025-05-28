@@ -164,25 +164,27 @@ function draw_grid() {
                 rect(i * cellSize , j * cellSize , cellSize ,cellSize );
             }
 
+            // cell state at pos j i
+            let cellState = grid.get(j, i)
+
             if(!cellDragger.cellDragged(j, i)) {
-                // visited
-                if(grid.get(j, i) == CellState.VISITED) {
-                    fill(153, 153, 238, 255);
-                }
-                // start
-                if(grid.get(j, i)  == CellState.START) {
-                    fill(59, 179, 65, 255);
-                }
-                // end
-                if(grid.get(j, i)  == CellState.END) {
-                    fill(184, 62, 93, 255);
-                }
-                // path start->end
-                if(grid.get(j, i)  == CellState.PATH) {
-                    fill(255, 234, 71, 255);
-                }        
-                if(grid.get(j, i)  == CellState.WALL) {
-                    fill(0, 0, 0, 255);
+
+                switch(cellState) {
+                    case CellState.VISITED:
+                        fill(153, 153, 238, 255);
+                        break;
+                    case CellState.START:
+                        fill(59, 179, 65, 255);
+                        break;
+                    case CellState.END:
+                        fill(184, 62, 93, 255);
+                        break;
+                    case CellState.PATH:
+                        fill(255, 234, 71, 255);
+                        break;
+                    case CellState.WALL:
+                        fill(0, 0, 0, 255);
+                        break;
                 }
             }
 

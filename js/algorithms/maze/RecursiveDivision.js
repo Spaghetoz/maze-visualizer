@@ -23,19 +23,14 @@ class RecursiveDivision extends MazeGenAlgorithm {
     
     nextStep() {
     
-        if(this.hasNextStep()) {
-    
-            if(this.hasWallsToBuild()) {
-                let wall_pos = this.pending_walls.shift(0)
-                this.grid.set(wall_pos[1], wall_pos[0], CellState.WALL)
-            } 
-            else {
-                let [x, y, width, height] = this.stack.pop();
-                this.processSection(x,y,width,height)
-            }
-        } else {
-            this.finish()
-        }
+        if(this.hasWallsToBuild()) {
+            let wall_pos = this.pending_walls.shift(0)
+            this.grid.set(wall_pos[1], wall_pos[0], CellState.WALL)
+        } 
+        else {
+            let [x, y, width, height] = this.stack.pop();
+            this.processSection(x,y,width,height)
+        }  
     }
     
     hasWallsToBuild() {

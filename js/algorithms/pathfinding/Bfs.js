@@ -23,10 +23,6 @@ class Bfs extends PathFindingAlgorithm {
 
 
     nextStep() {
-        if(!this.hasNextStep()) {
-            this.finish()
-            return
-        }
 
         if(this.isLookingForPath) {
             this.pathFindingNextStep()

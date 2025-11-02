@@ -23,42 +23,36 @@ class RandomizedDfs extends MazeGenAlgorithm {
     }
 
     nextStep() {
-        if(this.hasNextStep()) {
-            let curr = this.stack.pop()
+        let curr = this.stack.pop()
             
-            let str_curr = this.grid.pos_to_str(curr[0], curr[1])
-            this.visited.add(str_curr)
+        let str_curr = this.grid.pos_to_str(curr[0], curr[1])
+        this.visited.add(str_curr)
 
-            this.digIfPossible(curr[1], curr[0])
+        this.digIfPossible(curr[1], curr[0])
 
-            let previous = this.prevs[str_curr]
+        let previous = this.prevs[str_curr]
 
-            // Dig a passage between current cell and the cell preceding it
-            if(previous !== undefined) {
+        // Dig a passage between current cell and the cell preceding it
+        if(previous !== undefined) {
 
-                this.digIfPossible(previous[1], previous[0])
+            this.digIfPossible(previous[1], previous[0])
 
-                let intermediate_cell = [(curr[0]+previous[0])/2, (curr[1]+previous[1])/2]
+            let intermediate_cell = [(curr[0]+previous[0])/2, (curr[1]+previous[1])/2]
 
-                this.digIfPossible(intermediate_cell[1], intermediate_cell[0])
-            }
-
-            let neighbors = shuffleArray( this.grid.get_neighbors(curr[0], curr[1], 2))
-
-            for(let neighbor of neighbors) {
-                
-                let str_neighbor = this.grid.pos_to_str(neighbor[0], neighbor[1])
-
-                if(!this.visited.has(str_neighbor)) {
-
-                    this.stack.push(neighbor)
-                    this.prevs[str_neighbor] = curr
-                }
-            }
+            this.digIfPossible(intermediate_cell[1], intermediate_cell[0])
         }
-        // if there isn't next step, finish the algorithm execution 
-        else {
-            this.finish()
+
+        let neighbors = shuffleArray( this.grid.get_neighbors(curr[0], curr[1], 2))
+
+        for(let neighbor of neighbors) {
+                
+            let str_neighbor = this.grid.pos_to_str(neighbor[0], neighbor[1])
+
+            if(!this.visited.has(str_neighbor)) {
+
+                this.stack.push(neighbor)
+                this.prevs[str_neighbor] = curr
+            }
         }
     }
     hasNextStep() {

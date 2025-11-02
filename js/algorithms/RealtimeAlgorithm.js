@@ -22,7 +22,6 @@ class RealtimeAlgorithm {
 
     /** Used in nextstep function, indicates if the algorithm should continue
      *  It acts as the condition in while loop for recursion.
-     *  Must be implemented by subclasses.
     */
     hasNextStep() {
         throw new Error("Must implement hasNextStep");

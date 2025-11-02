@@ -54,7 +54,10 @@ function draw() {
 function update() {
 
     if(!currentAlgorithm.isOver() && currentAlgorithm.isRunning()) {
-        currentAlgorithm.nextStep()
+        if(currentAlgorithm.hasNextStep()) {
+            currentAlgorithm.nextStep()
+        } else {
+        }
     }
 
     if(mouseIsPressed && !cellDragger.isDragging()) {
@@ -245,11 +248,15 @@ document.getElementById("run-maze-gen-btn").addEventListener("click", event => {
     let selectElement = document.getElementById("maze-gen-select");
     let selectedAlgorithm = selectElement.value;
 
+    // todo refactor to easily add new algorithms
     if(selectedAlgorithm == "randomized-dfs") {
         changeAlgorithm(new RandomizedDfs(grid, grid.get_start_pos()));
     } else if(selectedAlgorithm == "recursive-division") {
         changeAlgorithm(new RecursiveDivision(grid, grid.get_start_pos()));
-    } else {
+    } else if(selectedAlgorithm == "prim") {
+        changeAlgorithm(new Prim(grid, grid.get_start_pos()));
+    }
+     else {
         console.error("Selected algorithm doesn't exists")
     }
 
